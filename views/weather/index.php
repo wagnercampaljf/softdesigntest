@@ -2,19 +2,33 @@
     use \yii\bootstrap5\ActiveForm;
     use \yii\helpers\Html;
 ?>
-<h1>weather/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1>Clima</h1>
 
-<?php $form = ActiveForm::begin() ?>
+            <p>
+                Pesquisa de clima/tempo por região (cidade).
+            </p>
 
-    <?= $form->field($model, 'region') ?>
+            <?php $form = ActiveForm::begin() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Buscar clima da região', ['class' => 'btn btn-primary']) ?>
+                <?= $form->field($model, 'region') ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Buscar clima da região', ['class' => 'btn btn-primary']) ?>
+                </div>
+
+            <?php $form = ActiveForm::end() ?>
+
+            <?php 
+                if (isset($regiao) && !empty($regiao)){
+                    echo '<h1>'.$regiao.'</h1>';
+                }
+
+                echo '<pre>'; print_r($regionWeather); echo '</pre>';
+            ?>
+        </div>
     </div>
-
-<?php $form = ActiveForm::end() ?>
+</div>

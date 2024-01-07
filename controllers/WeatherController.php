@@ -36,22 +36,42 @@ class WeatherController extends \yii\web\Controller
         $regionWeather = [];
 
         $weatherForm = new WeatherForm;
-        $post = \Yii::$app->request->post();
+        $post = $this->request->post();
 
         if ($weatherForm->load($post) && $weatherForm->validate()){
-            $teste = new RestClient([
-                'base_url' => 'https://api.hgbrasil.com',
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-                ]);
-    
-            $result = $teste->get('/weather');
-            $data = json_decode($result->response);
-            echo "<pre>"; print_r($data); echo "</pre>"; die;
+            if (!empty($weatherForm->region)){
+                
+                $regionWeather = $this->getWeatherByRegion($weatherForm->region);
+
+            }
         }
 
         return $this->render('index', ['model' => $weatherForm, 'region' => $region, 'regionWeather' => $regionWeather]);        
     }
 
+    public function getWeatherKey(){
+        return \Yii::$app->params['weatherKey'];
+    }
+
+    public function getWeatherURI(){
+        return \Yii::$app->params['weatherURI'];
+    }
+
+    public function getWeatherByRegion($region){
+        $url = $this->getWeatherURI() . '/weather?key=' . $this->getWeatherKey() . '&city_name=' . urlencode($region);
+print_r($url);
+        $api = new RestClient([
+            'base_url' => $url,
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+            ]);
+
+        $result = $api->get('');
+        if (isset($result->response)){
+            return json_decode($result->response);
+        }
+        
+        return null;
+    }
 }
