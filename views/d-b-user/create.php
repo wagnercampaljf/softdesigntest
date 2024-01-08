@@ -5,8 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\DBUser $model */
 
-$this->title = 'Create Db User';
-$this->params['breadcrumbs'][] = ['label' => 'Db Users', 'url' => ['index']];
+$this->title = 'Criar Novo Usuário';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="dbuser-create">

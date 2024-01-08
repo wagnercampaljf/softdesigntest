@@ -44,10 +44,10 @@ class DBUser extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'username' => 'Username',
-            'password' => 'Password',
+            'first_name' => 'Nome',
+            'last_name' => 'Sobrenome',
+            'username' => 'Login',
+            'password' => 'Senha',
             'auth_key' => 'Auth Key',
         ];
     }

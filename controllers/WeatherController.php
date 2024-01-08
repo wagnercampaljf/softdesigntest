@@ -41,6 +41,7 @@ class WeatherController extends \yii\web\Controller
         if ($weatherForm->load($post) && $weatherForm->validate()){
             if (!empty($weatherForm->region)){
                 
+                $region = $weatherForm->region;
                 $regionWeather = $this->getWeatherByRegion($weatherForm->region);
 
             }
@@ -49,27 +50,32 @@ class WeatherController extends \yii\web\Controller
         return $this->render('index', ['model' => $weatherForm, 'region' => $region, 'regionWeather' => $regionWeather]);        
     }
 
-    public function getWeatherKey(){
+    public function getWeatherKey(): string{
         return \Yii::$app->params['weatherKey'];
     }
 
-    public function getWeatherURI(){
+    public function getWeatherURI(): string{
         return \Yii::$app->params['weatherURI'];
     }
 
-    public function getWeatherByRegion($region){
-        $url = $this->getWeatherURI() . '/weather?key=' . $this->getWeatherKey() . '&city_name=' . urlencode($region);
-print_r($url);
+    public function getWeatherByRegion($region): object{
+
         $api = new RestClient([
-            'base_url' => $url,
+            'base_url' => $this->getWeatherURI(),
             'headers' => [
                 'Accept' => 'application/json'
             ]
             ]);
 
-        $result = $api->get('');
+        $result = $api->get('/weather?key=' . $this->getWeatherKey() . '&city_name=' . urlencode($region));
+
         if (isset($result->response)){
-            return json_decode($result->response);
+            $resultJson = json_decode($result->response);
+            if (isset($resultJson->results)){
+                if ($result->error === "") {
+                    return $resultJson->results;
+                }
+            }
         }
         
         return null;

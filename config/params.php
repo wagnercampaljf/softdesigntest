@@ -5,6 +5,6 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
 
-    'weatherKey' => 'chaveWeather',
+    'weatherKey' => 'SUA-CHAVE',
     'weatherURI' => 'https://api.hgbrasil.com',
 ];
