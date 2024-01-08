@@ -72,11 +72,8 @@ Senha: testsoft
 yii migrate"
 ~~~
 
-8. Agora basta acessar o enderço no navegador para fazer os teste necessários
+8. Agora basta acessar o endereço no navegador para fazer os teste necessários
 
 ~~~
 http://localhost:8000/
 ~~~
-
-
-### Sistema no ar para testes e apreciação.
