@@ -18,7 +18,7 @@ class DBUserSearch extends DBUser
     {
         return [
             [['id'], 'integer'],
-            [['first_name', 'last_name', 'username', 'password', 'auth_key'], 'safe'],
+            [['first_name', 'last_name', 'username', 'password', 'auth_key', 'email'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class DBUserSearch extends DBUser
             ->andFilterWhere(['like', 'last_name', $this->last_name])
             ->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'password', $this->password])
+            ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key]);
 
         return $dataProvider;

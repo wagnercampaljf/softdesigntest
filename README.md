@@ -2,48 +2,82 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h1 align="center">Projeto de Seleção Soft Design</h1>
     <br>
 </p>
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-rapidly creating small projects.
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
+DESCRIÇÃO
 ------------
 
-The minimum requirement by this project template that your Web server supports PHP 7.4.
+Como na descrição do desafio descreve, foi criada uma aplicação web em PHP com acesso restrito, que exibe uma listagem de livros com as opções de ver os detalhes, editar, deletar e criar um livro, e também exiba o clima atual da sua região.
 
-
-INSTALLATION
+CONTEÚDO 
 ------------
 
-### Install via Composer
+1. Tela de Login / Cadastro de Usuários (BD)
+
+2. CRUD de Livros
+
+3. Tela de Clima da região
+
+REQUISITOS
+------------
+
+Docker;
+
+INTALAÇÃO
+------------
+
+### Install com Docker
+
+1. Dentro da pasta do projeto, baixada do Git, rodar o comando 
+
+~~~
+docker compose up -d
+~~~
+
+2. Dentro da mesma pasta executar o seguinte comando
+
+~~~
+docker exec -it yii_jessica2 bash
+~~~
+
+3. Com o comando acima executado, abrirá um bash dentro do docker, e dentro do projeto rodando no container damos o seguinte comando
+
+~~~
+composer install
+~~~
+
+4. Utilizei uma imagem com o Adminer para ter acesso ao Banco de Dados e para acessa-lo, entre no endereço abaixo pelo navegador
+
+~~~
+http://localhost:8080/
+~~~
+
+5. Para logar no MySQL utilize os dados abaixo
+
+~~~
+Sistema: MySQL
+Servidor: db
+Usuário: root
+Senha: testsoft
+~~~
+
+6. Assim que acessar o MySQL, criar o banco de dados "testsoftdesign" pelo próprio sistema Adminer
+
+7. Novamente no bash do container executar o comando abaixo para a criação das tabelas no banco de dados 
+
+~~~
+yii migrate"
+~~~
+
+8. Agora basta acessar o enderço no navegador para fazer os teste necessários
+
+~~~
+http://localhost:8000/
+~~~
+
 
 If you do not have [Composer](https://getcomposer.org/), you may install it by following the instructions
 at [getcomposer.org](https://getcomposer.org/doc/00-intro.md#installation-nix).
